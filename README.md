@@ -1,7 +1,7 @@
-### NAME:
-### ROLL NO :
-### DEPARTMENT 
-### DATE
+### NAME: KANAGAVEL R
+### ROLL NO : 212223040085
+### DEPARTMENT : CSE
+### DATE : 23.11.2025
 
 
 
@@ -139,16 +139,41 @@ Run the Python script.
 Check if the message appears in the HiveMQ Web Client.
 ## PROGRAM
 [
+```
 
 
 
+import paho.mqtt.client as mqtt
+import time
+import random
+import ssl
+
+broker="9f6ca324f84346509a1843f3d3391128.s1.eu.hivemq.cloud"
+port = 8883
+topic = "iot1/demo/sensor"
+
+username= "hivemq.webclient.1761189750095"
+password="z49j&G<Rg@3,haMQKB8r"
+
+client=mqtt.Client(client_id="publisher")
+client.username_pw_set(username,password)
+client.tls_set(tls_version=ssl.PROTOCOL_TLS)
+client.connect(broker,port)
+while True:
+    temperature=round(random.uniform(20.0,30.0),2)
+    humidity = round(random.uniform(30.0,70.0),2)
+    payload=f"Temperature: {temperature:.2f} *C,Humdity: {humidity:.2f}%"
+    client.publish(topic,payload)
+    print(f" Published: {payload} -> {topic}")
+    time.sleep(5)
 
 
+```
 ]
 
 ### OUTPUT SCREENSHOTS
 
-
+<img width="1713" height="911" alt="Screenshot 2025-10-30 080411" src="https://github.com/user-attachments/assets/1f9021b6-2444-4824-b638-68850c817af9" />
 
 ## Results
 
